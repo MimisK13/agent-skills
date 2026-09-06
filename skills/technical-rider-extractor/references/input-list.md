@@ -1,156 +1,206 @@
-# Percussion
+# Input List
 
-Use this reference when extracting percussion backline requirements from a technical rider.
+Use this reference when extracting input-list requirements from a technical rider.
 
-The primary goal is to determine which percussion equipment is:
-
-- Artist Supplied
-- Local Production
-- Venue Supplied
-- Unspecified
+The primary goal is to identify each required audio input and preserve the requested source, microphone, DI, stand, and channel-specific notes.
 
 ## Extract
 
-Identify percussion instruments and related hardware explicitly requested in the rider.
+For each input, capture when available:
 
-Common examples include:
-
-- Congas
-- Bongos
-- Timbales
-- Cajón
-- Djembe
-- Cowbell
-- Tambourine
-- Shaker
-- Chimes
-- Wood Block
-- Claves
-- Triangle
-- Percussion Table
-- Percussion Stand
-
-For each item, preserve when available:
-
-- quantity
-- size
-- manufacturer
-- model / series
-- type
+- channel number
+- source
+- microphone
+- DI
+- stand / mounting
+- phantom power
+- insert / processing requirement
 - notes
-- supply responsibility
 
-## Supply Responsibility
+## Channel Order
 
-Determine who must provide each item.
+Preserve the channel order from the rider.
 
-Normalize to:
+Do not reorder channels by instrument type.
 
-- `Artist Supplied`
-- `Local Production`
-- `Venue Supplied`
-- `Unspecified`
+If channel numbers are not provided, preserve the listed order without inventing channel numbers.
 
-Examples:
+## Source
 
-`Artist carries own percussion`
+Preserve the source name as closely as possible.
 
-→ `Artist Supplied`
+Common examples:
 
-`Please provide LP congas`
+- Kick In
+- Kick Out
+- Snare Top
+- Snare Bottom
+- Hi-Hat
+- Rack Tom
+- Floor Tom
+- Overhead L
+- Overhead R
+- Bass DI
+- Bass Mic
+- Guitar L
+- Guitar R
+- Keyboard L
+- Keyboard R
+- Vocal
+- Talkback
 
-→ `Local Production`
+Normalize obvious wording differences only when the meaning is unambiguous.
 
-Do not assume percussion is locally supplied simply because it appears in the rider.
-
-## Instruments
-
-Preserve each percussion instrument separately.
-
-Examples:
-
-- `02 x Conga LP`
-- `01 x Cajón`
-- `01 x Tambourine`
-- `02 x Shaker`
-
-Do not combine multiple different percussion items into a generic `Percussion Set` unless the rider itself uses that description.
-
-## Sizes
-
-Preserve sizes when explicitly stated.
-
-Examples:
-
-- `01 x 11" Conga`
-- `01 x 12" Conga`
-- `01 x 14" Timbale`
-
-Do not infer conventional sizes.
-
-## Hardware
-
-Capture percussion-specific hardware separately when required.
-
-Examples:
-
-- Conga Stand
-- Bongo Stand
-- Timbale Stand
-- Percussion Table
-- Accessory Clamp
-- Mounting Arm
-
-Preserve quantities and any compatibility requirements.
-
-## Preferences and Alternatives
-
-Preserve preferred and acceptable alternatives.
+Do not merge separate inputs.
 
 Example:
 
-`LP preferred, Meinl acceptable`
+- `Bass DI`
+- `Bass Mic`
 
-must preserve:
+must remain two separate inputs.
 
-- Preferred: LP
-- Acceptable: Meinl
+## Microphones
 
-Do not treat them as equivalent.
-
-## Output
-
-Use:
-
-`QTY x SIZE ITEM NOTES — SUPPLY`
-
-Omit `SIZE` when it is not specified.
+Capture the requested microphone manufacturer and model when specified.
 
 Examples:
 
-- `01 x 11" Conga LP — Local Production`
-- `01 x Cajón — Local Production`
-- `02 x Shaker — Artist Supplied`
-- `01 x Percussion Table — Local Production`
+- Shure Beta 91A
+- Shure SM57
+- Sennheiser e604
+- Sennheiser MD421
+- Neumann KM184
+
+Preserve preferred and acceptable alternatives when stated.
+
+Do not substitute microphones based on common industry practice.
+
+## DI Boxes
+
+Capture DI requirements separately from microphone requirements.
+
+Preserve when available:
+
+- active / passive
+- mono / stereo
+- manufacturer
+- model
+- notes
+
+Examples:
+
+- Radial J48
+- Radial JDI
+- Stereo DI
+
+Do not assume a DI is required unless explicitly stated.
+
+## Phantom Power
+
+Capture phantom-power requirements when explicitly stated.
+
+Examples:
+
+- `+48V`
+- `Phantom`
+- `48V Required`
+
+Do not infer phantom power solely from the microphone or DI model.
+
+## Stands and Mounting
+
+Capture stand or mounting requirements when specified.
+
+Examples:
+
+- Short Boom
+- Tall Boom
+- Straight Stand
+- Clamp
+- Drum Mount
+- No Stand
+
+Do not infer stand type from microphone placement.
+
+## Stereo Inputs
+
+Preserve stereo sources as separate inputs when the rider lists separate left and right channels.
+
+Example:
+
+- `Keyboard L`
+- `Keyboard R`
+
+Do not collapse them into a single input.
+
+## Output Format
+
+Use one line per input:
+
+`CH - SOURCE - MIC / DI - NOTES`
+
+Examples:
+
+- `01 - Kick In - Shure Beta 91A`
+- `02 - Kick Out - Shure Beta 52A`
+- `03 - Snare Top - Shure SM57`
+- `04 - Snare Bottom - Shure SM57 - Phase Reverse`
+- `15 - Bass DI - Radial J48`
+- `16 - Bass Mic - Sennheiser MD421`
+- `21 - Keyboard L - DI`
+- `22 - Keyboard R - DI`
+
+If information is missing, omit it rather than inventing it.
+
+## Preferences and Alternatives
+
+Preserve distinctions between:
+
+- required
+- preferred
+- acceptable
+- alternative
+- optional
+
+Do not treat alternative microphone or DI models as equivalent unless the rider does.
+
+## Input Count
+
+When possible, determine the total number of required inputs.
+
+Do not assume the highest channel number equals the total input count if:
+
+- numbering contains gaps
+- spare channels are included
+- channels are intentionally skipped
 
 ## Stage Plot
 
 Use the stage plot as supporting information for:
 
-- percussion position
-- number of percussion stations
-- instrument placement
-- hardware placement
+- source identification
+- performer position
+- stereo relationships
+- microphone placement
 
-Do not automatically treat every illustrated percussion item as a confirmed rental requirement.
+Do not create additional inputs solely because an instrument appears on the stage plot.
 
 ## Conflicts
 
 Flag conflicts between:
 
-- backline section
-- equipment list
 - input list
+- patch sheet
 - stage plot
+- backline specification
+- monitor section
 
-Do not resolve conflicting quantities, models, sizes or supply responsibility by assumption.
+Examples:
+
+- different microphone models
+- different channel numbering
+- stereo source shown as mono elsewhere
+- input present in one section but missing in another
+
+Do not resolve conflicts by assumption.
